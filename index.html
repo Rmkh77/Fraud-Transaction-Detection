@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+       }
+        select,
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .result h2 {
+            color: #4caf50;
+            font-size: 24px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+        <h1>Transaction Prediction</h1>
+        <form method="POST" action="/output">
+            <label for="type">Transaction Type:</label>
+            <select name="type" id="type" required>
+                <option value="PAYMENT">Payment</option>
+                <option value="TRANSFER">Transfer</option>
+                <option value="CASH_OUT">Cash Out</option>
+                <option value="DEBIT">Debit</option>
+                <option value="CASH_IN">Cash In</option>
+            </select>
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" id="amount" required>
+            <label for="old">Old Balance:</label>
+            <input type="number" name="old" id="old" required>
+            <label for="new">New Balance:</label>
+            <input type="number" name="new" id="new" required>
+            <button type="submit">Predict</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <h3>Prediction Result:</h3>
+            <h2>{{ result }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
